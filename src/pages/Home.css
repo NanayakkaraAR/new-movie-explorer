@@ -1,0 +1,55 @@
+.home {
+    background-color: #0a0f2c; /* Deep navy */
+    color: #ffd700; /* Gold text */
+    padding: 2rem 0;
+  }
+  
+  /* Hero Section */
+  .hero {
+    background: linear-gradient(to right, #0a0f2c, #1a1f3c);
+    padding: 4rem 2rem;
+    text-align: center;
+  }
+  
+  .hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #ffd700;
+  }
+  
+  .hero p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: #cccccc;
+  }
+  
+  /* Search Bar Wrapper */
+  .hero .search-bar {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  /* Movies Section */
+  .movies-section {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .movies-section h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: #ffffff;
+  }
+  
+  .movie-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  /* Error Message */
+  .error {
+    color: #ff4d4d;
+    font-weight: bold;
+  }
