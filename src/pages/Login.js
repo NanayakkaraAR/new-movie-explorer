@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../config/firebase'; // Adjust the path if necessary
 import './login.css';
@@ -7,6 +8,7 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const navigate = useNavigate(); // Initialize useNavigate
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -15,7 +17,7 @@ const Login = () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       console.log('Login successful');
-      // Redirect or perform other actions after successful login
+      navigate('/'); // Redirect to the home page after successful login
     } catch (err) {
       console.error('Login error:', err.message);
       setError('Invalid email or password. Please try again.');
@@ -63,7 +65,7 @@ const Login = () => {
         </form>
 
         <div className="signup-link">
-          Don't have an account? <a href="/register">Sign Up</a>
+          Don't have an account? <a href="/signup">Sign Up</a>
         </div>
       </div>
     </div>

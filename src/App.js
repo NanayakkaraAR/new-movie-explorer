@@ -14,8 +14,8 @@ const App = () => {
       <MovieProvider>
         <Router>
           <Routes>
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<SignUp />} /> {/* Add SignUp route */}
+            <Route path="/login" element={<Login />} /> {/* Login page */}
+            <Route path="/signup" element={<SignUp />} /> {/* SignUp page */}
             <Route
               path="/"
               element={
