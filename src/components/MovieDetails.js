@@ -11,15 +11,15 @@ const MovieDetailsPage = () => {
     if (id) {
       fetchMovieDetails(id); // Fetch movie data by ID
     }
-  }, [id]);
+  }, [id, fetchMovieDetails]);
 
   if (loading) return <p className="loading">Loading movie details...</p>;
   if (error) return <p className="error">{error}</p>;
   if (!movieDetails) return <p>No movie found.</p>;
 
   const posterUrl = movieDetails.poster_path
-    ? `https://image.tmdb.org/t/p/w500 ${movieDetails.poster_path}`
-    : 'https://via.placeholder.com/500x750?text=No+Image ';
+    ? `https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`
+    : 'https://via.placeholder.com/500x750?text=No+Image';
 
   return (
     <div className="movie-details">

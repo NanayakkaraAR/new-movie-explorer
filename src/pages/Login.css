@@ -1,0 +1,152 @@
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #0a0f2c; /* Navy background */
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.login-card {
+  background-color: #121936;
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.login-card h2 {
+  margin-bottom: 0.5rem;
+  color: #ffd700; /* Gold title */
+}
+
+.login-card p {
+  color: #ccc;
+  font-size: 0.95rem;
+  margin-bottom: 2rem;
+}
+
+.login-form label {
+  text-align: left;
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #fff;
+  font-weight: 500;
+}
+
+.login-form input[type='email'],
+.login-form input[type='password'] {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1.5rem;
+  border: none;
+  border-radius: 6px;
+  background-color: #1f2a52;
+  color: #fff;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.login-form input:focus {
+  outline: none;
+  background-color: #293b6d;
+}
+
+.form-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.form-options a {
+  color: #ffd700;
+  text-decoration: none;
+}
+
+.form-options a:hover {
+  text-decoration: underline;
+}
+
+.login-button {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #ffd700;
+  color: #0a0f2c;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+  background-color: #e6c200;
+}
+
+.signup-link {
+  margin-top: 1.5rem;
+  color: #ccc;
+  font-size: 0.95rem;
+}
+
+.signup-link a {
+  color: #ffd700;
+  text-decoration: none;
+  margin-left: 4px;
+}
+
+.signup-link a:hover {
+  text-decoration: underline;
+}
+
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .remember-me {
+    display: flex;
+    align-items: center;
+    gap: 6px; /* space between checkbox and text */
+    font-weight: 500;
+    color: #fff;
+  }
+  
+  .remember-me input[type="checkbox"] {
+    margin: 0;
+    accent-color: #ffd700; /* Optional: gold checkbox */
+  }
+
+/* Responsive */
+@media (max-width: 500px) {
+  .login-card {
+    padding: 2rem;
+    margin: 1rem;
+  }
+
+  .login-card h2 {
+    font-size: 1.75rem;
+  }
+}

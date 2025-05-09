@@ -1,20 +1,42 @@
-import React, { useContext, useEffect } from 'react';
-import './Home.css'; // We'll create this next
+import React, { useContext, useEffect, useState } from 'react';
+import './Home.css';
 import SearchBar from '../components/SearchBar';
 import MovieCard from '../components/MovieCard';
+import FilterBar from '../components/FilterBar';
 import { MovieContext } from '../context/MovieContext';
 
 const Home = () => {
-  const { movies, loading, error, fetchTrendingMovies } = useContext(MovieContext);
+  const {
+    movies,
+    loading,
+    error,
+    fetchTrendingMovies,
+    allMovies,
+    allMoviesLoading,
+    allMoviesError,
+    fetchAllMovies,
+  } = useContext(MovieContext);
+
+  const [currentPage, setCurrentPage] = useState(1); // Track the current page
 
   useEffect(() => {
-    fetchTrendingMovies(); // Fetch trending movies on load
-  }, []);
+    const fetchData = async () => {
+      await fetchTrendingMovies();
+      await fetchAllMovies(currentPage); // Fetch the first page of movies
+    };
+
+    fetchData();
+  }, [currentPage, fetchTrendingMovies, fetchAllMovies]);
+
+  const handleLoadMore = () => {
+    setCurrentPage((prevPage) => prevPage + 1); // Increment the page number
+  };
 
   return (
     <div className="home">
       {/* Hero Section */}
-      <section className="hero">
+      <section className="hero-section">
+        <div className="hero-overlay"></div>
         <div className="hero-content">
           <h1>Welcome to the Movie Explorer</h1>
           <p>Search for your favorite movies and explore details</p>
@@ -22,20 +44,42 @@ const Home = () => {
         </div>
       </section>
 
+      {/* Filters */}
+      <section className="filter-section">
+        <FilterBar />
+      </section>
+
       {/* Trending Movies Section */}
-      <section className="movies-section">
-        <h2>Trending Movies</h2>
-        {loading && <p>Loading movies...</p>}
+      <section className="movies-section trending">
+        <h2>Trending Now</h2>
+        
         {error && <p className="error">{error}</p>}
         <div className="movie-grid">
           {movies.length > 0 ? (
-            movies.map((movie) => (
-              <MovieCard key={movie.id} movie={movie} />
-            ))
+            movies.map((movie) => <MovieCard key={movie.id} movie={movie} />)
           ) : (
-            !loading && <p>No movies found.</p>
+            !loading && <p>No trending movies found.</p>
           )}
         </div>
+      </section>
+
+      {/* All Movies Section */}
+      <section className="movies-section all-movies">
+        <h2>All Popular Movies</h2>
+        {allMoviesError && <p className="error">{allMoviesError}</p>}
+        <div className="movie-grid">
+          {allMovies.length > 0 ? (
+            allMovies.map((movie) => <MovieCard key={movie.id} movie={movie} />)
+          ) : (
+            !allMoviesLoading && <p>No movies found.</p>
+          )}
+        </div>
+        {!allMoviesLoading && allMovies.length > 0 && (
+          <button className="load-more-button" onClick={handleLoadMore}>
+            Load More
+          </button>
+        )}
+        {allMoviesLoading && <p className="loading">Loading more movies...</p>}
       </section>
     </div>
   );

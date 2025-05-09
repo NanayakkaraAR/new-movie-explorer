@@ -2,10 +2,12 @@ import React, { useContext } from 'react';
 import { MovieContext } from '../context/MovieContext';
 
 const SearchBar = () => {
-  const { searchQuery, setSearchQuery } = useContext(MovieContext);
+  const { searchQuery, setSearchQuery, fetchSearchResults } = useContext(MovieContext);
 
   const handleInputChange = (e) => {
-    setSearchQuery(e.target.value);
+    const query = e.target.value;
+    setSearchQuery(query);
+    fetchSearchResults(query); // Trigger search on input change
   };
 
   return (
