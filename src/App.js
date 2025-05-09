@@ -1,19 +1,41 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { MovieProvider } from './context/MovieContext';
-import Home from './pages/Home'; // Home page component
-import MovieDetails from './components/MovieDetails'; // Movie details component
+import { AuthProvider } from './context/AuthContext';
+import ProtectedRoute from './components/ProtectedRoute';
+import Home from './pages/Home';
+import MovieDetails from './components/MovieDetails';
+import Login from './pages/login';
+import SignUp from './pages/SignUp'; // Import SignUp page
 
 const App = () => {
   return (
-    <MovieProvider>
-      <Router>
-        <Routes>
-          <Route path="/" element={<Home />} /> {/* Home page */}
-          <Route path="/movie/:movieId" element={<MovieDetails />} /> {/* Movie details page */}
-        </Routes>
-      </Router>
-    </MovieProvider>
+    <AuthProvider>
+      <MovieProvider>
+        <Router>
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<SignUp />} /> {/* Add SignUp route */}
+            <Route
+              path="/"
+              element={
+                <ProtectedRoute>
+                  <Home />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/movie/:movieId"
+              element={
+                <ProtectedRoute>
+                  <MovieDetails />
+                </ProtectedRoute>
+              }
+            />
+          </Routes>
+        </Router>
+      </MovieProvider>
+    </AuthProvider>
   );
 };
 

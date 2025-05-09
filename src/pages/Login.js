@@ -1,14 +1,25 @@
 import React, { useState } from 'react';
-import './Login.css';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../config/firebase'; // Adjust the path if necessary
+import './login.css';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle login logic here (e.g., API call or redirect)
-    console.log('Logging in with:', email, password);
+    setError(''); // Clear previous errors
+
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      console.log('Login successful');
+      // Redirect or perform other actions after successful login
+    } catch (err) {
+      console.error('Login error:', err.message);
+      setError('Invalid email or password. Please try again.');
+    }
   };
 
   return (
@@ -18,6 +29,7 @@ const Login = () => {
         <p>Log in to explore movies</p>
 
         <form onSubmit={handleSubmit} className="login-form">
+          {error && <p className="error-message">{error}</p>} {/* Display error message */}
           <label>Email Address</label>
           <input
             type="email"
@@ -36,14 +48,14 @@ const Login = () => {
             required
           />
 
-        <div className="form-options">
+          <div className="form-options">
             <div>
-            <label className="remember-me">
-            <input type="checkbox" /> Remember me
-            </label>
+              <label className="remember-me">
+                <input type="checkbox" /> Remember me
+              </label>
             </div>
             <a href="/forgot-password">Forgot Password?</a>
-        </div>
+          </div>
 
           <button type="submit" className="login-button">
             Log In
