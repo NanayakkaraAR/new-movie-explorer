@@ -1,4 +1,6 @@
 // utils/api.js
+import axios from 'axios'; // Add this import at the top of the file
+
 const API_KEY = 'your_tmdb_api_key';
 const BASE_URL = 'https://api.themoviedb.org/3 ';
 
@@ -25,4 +27,15 @@ export const getMovieDetails = async (movieId) => {
       api_key: API_KEY,
     },
   });
+};
+
+// Example usage of axios
+export const fetchMovies = async () => {
+  try {
+    const response = await axios.get('https://api.example.com/movies');
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching movies:', error);
+    throw error;
+  }
 };

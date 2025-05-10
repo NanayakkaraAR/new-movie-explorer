@@ -211,12 +211,6 @@ export const MovieProvider = ({ children }) => {
     }
   };
 
-  const contextValue = {
-    fetchAllMovies, // Keep one instance
-    fetchFilteredMovies, // Keep one instance
-    // Remove or rename duplicates
-  };
-
   return (
     <MovieContext.Provider
       value={{
@@ -250,8 +244,6 @@ export const MovieProvider = ({ children }) => {
         // API Functions
         fetchTrendingMovies,
         fetchMovieDetails,
-        fetchAllMovies,
-        fetchFilteredMovies,
         fetchMovieImages,
         fetchSearchResults,
       }}
@@ -285,6 +277,7 @@ const MovieImages = ({ movieId }) => {
         <p>No images available for this movie.</p>
         <img
           src="https://via.placeholder.com/500x300?text=No+Image+Available"
+          alt="" // Use an empty string for decorative images
           style={{ width: '200px', margin: '10px' }}
         />
       </div>
@@ -299,6 +292,7 @@ const MovieImages = ({ movieId }) => {
           <img
             key={index}
             src={imageUrl}
+            alt={`Movie ${index + 1}`} // Remove redundant words like "image"
             style={{ width: '200px', margin: '10px' }}
           />
         );
