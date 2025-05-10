@@ -72,6 +72,22 @@
   align-items: center;
   margin-bottom: 1.5rem;
   font-size: 0.9rem;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.remember-me {
+  display: inline-flex; /* Align items inline */
+  align-items: center; /* Vertically align the checkbox and text */
+  gap: 6px; /* Space between the checkbox and text */
+  font-weight: 500;
+  color: #fff;
+  margin: 0; /* Remove any unnecessary margins */
+}
+
+.remember-me input[type="checkbox"] {
+  margin: 0; /* Ensure no extra margin around the checkbox */
+  accent-color: #ffd700; /* Optional: gold checkbox */
 }
 
 .form-options a {
@@ -115,29 +131,6 @@
 .signup-link a:hover {
   text-decoration: underline;
 }
-
-.form-options {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1.5rem;
-    font-size: 0.9rem;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-
-  .remember-me {
-    display: flex;
-    align-items: center;
-    gap: 6px; /* space between checkbox and text */
-    font-weight: 500;
-    color: #fff;
-  }
-  
-  .remember-me input[type="checkbox"] {
-    margin: 0;
-    accent-color: #ffd700; /* Optional: gold checkbox */
-  }
 
 .error-message {
   color: red;

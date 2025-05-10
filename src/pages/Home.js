@@ -1,4 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { signOut } from 'firebase/auth';
+import { auth } from '../config/firebase'; // Adjust the path if necessary
 import './Home.css';
 import SearchBar from '../components/SearchBar';
 import MovieCard from '../components/MovieCard';
@@ -18,27 +21,51 @@ const Home = () => {
   } = useContext(MovieContext);
 
   const [currentPage, setCurrentPage] = useState(1); // Track the current page
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
-      await fetchTrendingMovies();
-      await fetchAllMovies(currentPage); // Fetch the first page of movies
+      try {
+        await fetchTrendingMovies();
+        await fetchAllMovies(currentPage); // Fetch the first page of movies
+      } catch (err) {
+        console.error('Error fetching movies:', err);
+      }
     };
 
     fetchData();
-  }, [currentPage, fetchTrendingMovies, fetchAllMovies]);
+  }, [currentPage, fetchTrendingMovies, fetchAllMovies]); // Ensure dependencies are stable
 
   const handleLoadMore = () => {
     setCurrentPage((prevPage) => prevPage + 1); // Increment the page number
   };
 
+  const handleLogout = async () => {
+    try {
+      await signOut(auth); // Log the user out
+      console.log('Logout successful');
+      navigate('/login'); // Redirect to the login page
+    } catch (err) {
+      console.error('Logout error:', err.message);
+    }
+  };
+
   return (
     <div className="home">
+      <header className="home-header">
+       
+      </header>
+
       {/* Hero Section */}
       <section className="hero-section">
         <div className="hero-overlay"></div>
         <div className="hero-content">
-          <h1>Welcome to the Movie Explorer</h1>
+          <button className="logout-button" onClick={handleLogout}>
+            Logout
+          </button>
+          <div className="hero-header">
+            <h1>Welcome to the Movie Explorer</h1>
+          </div>
           <p>Search for your favorite movies and explore details</p>
           <SearchBar />
         </div>

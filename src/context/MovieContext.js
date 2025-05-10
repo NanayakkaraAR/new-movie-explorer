@@ -91,7 +91,7 @@ export const MovieProvider = ({ children }) => {
   };
 
   // Fetch Popular Movies for Infinite Scroll
-  const fetchAllMovies = async (page = 1) => {
+  const fetchAllMovies = useCallback(async (page = 1) => {
     setAllMoviesLoading(true);
     setAllMoviesError(null);
 
@@ -110,7 +110,7 @@ export const MovieProvider = ({ children }) => {
     } finally {
       setAllMoviesLoading(false);
     }
-  };
+  }, []);
 
   const resetPopularMovies = () => {
     setAllMovies([]);

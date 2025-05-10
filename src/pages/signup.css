@@ -3,28 +3,29 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #f5f5f5;
+  background-color: #000; /* Black background */
 }
 
 .signup-card {
-  background: #fff;
+  background: #1a1a1a; /* Dark gray card background */
   padding: 2rem;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   width: 100%;
   max-width: 400px;
   text-align: center;
+  color: #fff; /* White text */
 }
 
 .signup-card h2 {
   margin-bottom: 1rem;
   font-size: 24px;
-  color: #333;
+  color: #ffd700; /* Gold color for the heading */
 }
 
 .signup-card p {
   margin-bottom: 1.5rem;
-  color: #666;
+  color: #ccc; /* Light gray text */
 }
 
 .signup-form label {
@@ -32,23 +33,29 @@
   text-align: left;
   margin-bottom: 0.5rem;
   font-weight: bold;
-  color: #333;
+  color: #ffd700; /* Gold color for labels */
 }
 
 .signup-form input {
   width: 100%;
   padding: 0.75rem;
   margin-bottom: 1rem;
-  border: 1px solid #ddd;
+  border: 1px solid #333; /* Dark border */
   border-radius: 4px;
   font-size: 1rem;
+  background-color: #222; /* Dark input background */
+  color: #fff; /* White text */
+}
+
+.signup-form input::placeholder {
+  color: #888; /* Light gray placeholder text */
 }
 
 .signup-button {
   width: 100%;
   padding: 0.75rem;
-  background-color: #007bff;
-  color: #fff;
+  background-color: #007bff; /* Blue button background */
+  color: #fff; /* White text */
   border: none;
   border-radius: 4px;
   font-size: 1rem;
@@ -57,7 +64,7 @@
 }
 
 .signup-button:hover {
-  background-color: #0056b3;
+  background-color: #0056b3; /* Darker blue on hover */
 }
 
 .error-message {
@@ -67,18 +74,18 @@
 }
 
 .success-message {
-  color: green;
+  color: #28a745; /* Green success message */
   font-size: 14px;
   margin-bottom: 1rem;
 }
 
 .login-link {
   margin-top: 1rem;
-  color: #007bff;
+  color: #007bff; /* Blue link */
 }
 
 .login-link a {
-  color: #007bff;
+  color: #ffd700; /* Gold link */
   text-decoration: none;
 }
 
