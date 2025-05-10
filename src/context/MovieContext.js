@@ -15,7 +15,7 @@ export const MovieProvider = ({ children }) => {
   const [searchQuery, setSearchQuery] = useState('');
 
   // Movie Details
-  const [movieDetails, setMovieDetails] = useState(null);
+  const [movieDetails] = useState(null);
 
   // All / Popular Movies (Infinite Scroll)
   const [allMovies, setAllMovies] = useState([]);
@@ -211,6 +211,12 @@ export const MovieProvider = ({ children }) => {
     }
   };
 
+  const contextValue = {
+    fetchAllMovies, // Keep one instance
+    fetchFilteredMovies, // Keep one instance
+    // Remove or rename duplicates
+  };
+
   return (
     <MovieContext.Provider
       value={{
@@ -279,7 +285,6 @@ const MovieImages = ({ movieId }) => {
         <p>No images available for this movie.</p>
         <img
           src="https://via.placeholder.com/500x300?text=No+Image+Available"
-          alt="Placeholder"
           style={{ width: '200px', margin: '10px' }}
         />
       </div>
@@ -294,7 +299,6 @@ const MovieImages = ({ movieId }) => {
           <img
             key={index}
             src={imageUrl}
-            alt={`Movie Image ${index + 1}`}
             style={{ width: '200px', margin: '10px' }}
           />
         );
